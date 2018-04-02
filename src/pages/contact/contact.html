@@ -14,4 +14,18 @@
       @ionicframework
     </ion-item>
   </ion-list>
+  <contact-detail *ngFor="let contact of contacts" [contact]="contact"></contact-detail>
+  <button (click)="AddVersionChange()">AddVersionChange</button>
+  <button (click)="SubVersionChange()">SubVersionChange</button>
+  <contact-change [versionChange]="versionChange"></contact-change>
+  <button (click)="countdown.showMsg()">Change Child Componet Msg</button>
+  <!--#name 可以放置在子组件中去标记这个组件。然后在模板其他位置就可以用name调用组件定义的属性和方法-->
+  <contact-countdown #countdown></contact-countdown>
+  <button (click)="changeInjectViewMsg()"></button>
+  <contact-injectview></contact-injectview>
+  <h4>HighLight Color</h4>
+  <input type="radio" name="colors" (click)="color='lightgreen'">Green
+  <input type="radio" name="colors" (click)="color='Yellow'">Yellow
+  <input type="radio" name="colors" (click)="color='cyan'">Cyan
+  <span [apphighlight]='color' defaultColor='cyan'>MyHighlight directive</span>
 </ion-content>

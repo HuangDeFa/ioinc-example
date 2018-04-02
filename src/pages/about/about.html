@@ -5,7 +5,25 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-
+<input type="button" value="click Me!" onclick="clearCache()">
+<div>
+  <label>Name</label>
+  <input [(ngModel)]="Name" placeholder="name">
+  <p>{{Name | uppercase}}</p>
+  <p *ngIf="Name.length>10" [class.show]="Name.length>12">hello {{Name}}</p>
+  <ul>
+    <li *ngFor="let tag of Tags" [class.show]="tag === 'this item 3'" (click)="onItemClick(tag)">
+      <span>{{tag}}</span>
+    </li>
+  </ul>
+  <label>Message</label>
+  <ul>
+    <li *ngFor="let message of Messages">
+      <span>{{message.content}}</span>
+    </li>
+  </ul>
+</div>
+<about-detial-page [parentName]="Name"></about-detial-page>
 </ion-content>
+
