@@ -39,6 +39,7 @@
     "rxjs": "5.5.7",
     "sw-toolbox": "3.6.0",
     "three": "^0.91.0",
+    "three-orbitcontrols": "^2.0.0",
     "zone.js": "0.8.20"
   },
   "devDependencies": {
