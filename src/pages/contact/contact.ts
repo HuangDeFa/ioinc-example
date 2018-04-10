@@ -1,6 +1,9 @@
+import { IonicPage } from 'ionic-angular';
 import { Component ,NgModule, ViewChild} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {ContactChildInjectComponent} from './contact.childInject'
+import { Detail } from '../detail/detail';
+
 
 @Component({
   selector: 'page-contact',
@@ -41,6 +44,10 @@ export class ContactPage {
   changeInjectViewMsg(){
     if(this.hasChildComponentReady)
      this.chileComponent.expressMsg="this a message from parent component"
+  }
+
+  goDetail(){
+    this.navCtrl.parent.parent.push(Detail)
   }
 
 }

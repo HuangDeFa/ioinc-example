@@ -22,4 +22,11 @@ export class ArticleService{
               return of(result as T);
           }
        }
+
+       getArticles(callback:(result:any)=>void){
+           this.http.get(this.articleUrl).toPromise().then(res=>{
+               console.log(res)
+               callback(res==null?[]:res)
+            })
+       }
 }

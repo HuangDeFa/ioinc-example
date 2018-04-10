@@ -1,3 +1,4 @@
+import { Detail } from './../pages/detail/detail';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -22,9 +23,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {HttpClientModule} from '@angular/common/http'
 import {HighlightDirective} from '../directive/myHighlight.directive'
 
+
 @NgModule({
   declarations: [
     MyApp,
+    TabsPage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -34,7 +37,8 @@ import {HighlightDirective} from '../directive/myHighlight.directive'
     ContactChange,
     CountDownLocalComponet,
     ContactChildInjectComponent,
-    HighlightDirective
+    HighlightDirective,
+    Detail
   ],
   imports: [
     BrowserModule,
@@ -45,10 +49,12 @@ import {HighlightDirective} from '../directive/myHighlight.directive'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    TabsPage,
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    Detail
   ],
   providers: [
     StatusBar,

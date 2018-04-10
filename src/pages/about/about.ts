@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {IonicPageModule} from "ionic-angular";
+import {IonicPage} from "ionic-angular";
 
 import {MessageService} from '../../services/Message.service';
 import {Message} from '../../bean/Message';

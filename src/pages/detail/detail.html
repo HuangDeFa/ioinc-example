@@ -1,0 +1,117 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Ionic UIComponent Detail</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+  <button ion-button block (click)="openActionSheet()">ActionSheet</button>
+  <button ion-button block (click)="goBack()">Back</button>
+  <button ion-button clear >Clear</button>
+  <button ion-button icon-only >
+      <ion-icon name="share"></ion-icon>
+  </button>
+  <button ion-button icon-left >
+      <ion-icon name="trash"></ion-icon>  
+  </button>
+  <button ion-button icon-right >
+      <ion-icon name="close"></ion-icon>
+  </button>
+  <button ion-button large color='secondary' (click)="openBasicAlert()">Large Button</button>
+  <button ion-button round color='danger' (click)="showPromptalert()">Round Button</button>
+  <button ion-button small (click)="showConfirmAlert()">SmallButton</button>
+  <button ion-button outline (click)="showRadioAlert()">RadioAlert</button>
+  <button ion-button outline (click)="showLoading()" color='secondary'>Show Loading</button>
+  <button ion-button block (click)="getArticle()" >GetArticle</button>
+  <!--<ion-list>
+      <ion-list-header>
+          WangNima
+      </ion-list-header>
+      <ion-item-sliding>
+         <ion-item>
+             <span>1231456</span>
+             <p>WangNiMa</p>
+         </ion-item>
+         <ion-item-options side='right'>
+             <button ion-button color='primary'>
+             <ion-icon name='text'></ion-icon>
+             Text
+            </button>
+             <button ion-button color='secondary'>
+             <ion-icon name='call'></ion-icon>
+             Call
+            </button>
+             <button ion-button color='default'>
+             <ion-icon name='more'></ion-icon>
+             More
+            </button>
+         </ion-item-options>
+      </ion-item-sliding>
+
+      <ion-item-sliding>
+            <ion-item>
+                <span>1231456</span>
+                <p>WangNiMa</p>
+            </ion-item>
+            <ion-item-options side='right'>
+                <button ion-button color='primary'>
+                <ion-icon name='text'></ion-icon>
+                Text
+               </button>
+                <button ion-button color='secondary'>
+                <ion-icon name='call'></ion-icon>
+                Call
+               </button>
+                <button ion-button color='default'>
+                <ion-icon name='more'></ion-icon>
+                More
+               </button>
+            </ion-item-options>
+         </ion-item-sliding>
+         <ion-list-header>
+             WangMiTao
+         </ion-list-header>
+         <ion-item-sliding>
+                <ion-item>
+                    <span>1231456</span>
+                    <p>WangMiTao</p>
+                </ion-item>
+                <ion-item-options side='right'>
+                    <button ion-button color='primary'>
+                    <ion-icon name='text'></ion-icon>
+                    Text
+                   </button>
+                    <button ion-button color='secondary'>
+                    <ion-icon name='call'></ion-icon>
+                    Call
+                   </button>
+                    <button ion-button color='default'>
+                    <ion-icon name='more'></ion-icon>
+                    More
+                   </button>
+                </ion-item-options>
+             </ion-item-sliding>
+  </ion-list>-->
+  <ion-list>
+      <ion-item-sliding *ngFor="let item of aritcles">
+          <ion-item>
+                 <span>{{item.chapterName}}</span>
+                 <a href="{{item.link}}"><p>{{item.title}}</p></a>
+                 <span>{{item.author}}</span>
+          </ion-item>
+          <ion-item-options side='right'>
+            <button ion-button color='primary'>
+            <ion-icon name='text'></ion-icon>
+            Text
+           </button>
+            <button ion-button color='secondary'>
+            <ion-icon name='call'></ion-icon>
+            Call
+           </button>
+            <button ion-button color='default'>
+            <ion-icon name='more'></ion-icon>
+            More
+           </button>
+        </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>
+</ion-content>

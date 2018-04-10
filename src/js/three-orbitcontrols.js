@@ -1043,4 +1043,4 @@ Object.defineProperties( OrbitControls.prototype, {
 
 } );
 
-exports ={OrbitControls}
+export {OrbitControls}

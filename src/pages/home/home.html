@@ -5,14 +5,16 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
-  <div #container></div>
+  <h2>Welcome to ThreeJs Ionic Sample App!</h2>
+  <ion-list >
+    <button ion-item  *ngFor="let item of ListItems" (click)="listItemSelected(item)">
+      {{item}}
+    </button>
+  </ion-list>
+  <!--<div #container></div>
+  <meta name="viewport" content="width-device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+  <div id="info">
+    <a href="http://threejs.org" target="_blank" rel="noopener">three.js</a>
+  </div>
+  <div #stlViewer></div>-->
 </ion-content>
