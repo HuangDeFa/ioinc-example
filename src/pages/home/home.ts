@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import {Component, ViewChild, ElementRef} from '@angular/core';
-import {NavController, ActionSheetController, IonicPage, Slides} from 'ionic-angular';
+import {NavController, ActionSheetController, IonicPage, Slides, InfiniteScroll} from 'ionic-angular';
 import {ExampleExport,ExampleExport2,ExampleExport3} from '../../js/example.export'
 import * as THREE from 'three'
 import {OrbitControls} from '../../js/three-orbitcontrols'
 import {ExampleModule} from '../../js/example'
+import { ArticleService } from '../../services/Article.service';
 
 
-@Component({selector: 'page-home', templateUrl: 'home.html',styleUrls:[]})
+@Component({selector: 'page-home', templateUrl: 'home.html',styleUrls:[],providers:[ArticleService]})
 export class HomePage {
   
  // @ViewChild("container") container:ElementRef;
@@ -17,8 +18,9 @@ export class HomePage {
   @ViewChild('banner')
   slides:Slides;
   isAfterViewInit=false;
-
-  constructor(public navCtrl : NavController,public actionSheetController:ActionSheetController,private http:HttpClient) {
+  activeBannerIndex:number;
+  constructor(public navCtrl : NavController,public actionSheetController:ActionSheetController,
+    private http:HttpClient,private articleService:ArticleService) {
     let example=new ExampleExport();
     example.exportFn("this exmple msg")
     let example1=new ExampleModule();
@@ -55,6 +57,7 @@ export class HomePage {
   ngAfterViewInit() {
     this.isAfterViewInit=true;
     if(this.banners.length>0){
+    this.slides.autoplay=500;  
     this.slides.startAutoplay();
     }
   }
@@ -81,11 +84,14 @@ export class HomePage {
       if(data.hasOwnProperty('data')){
           console.log(data)
           this.banners=data['data']
+          this.activeBannerIndex=this.banners[0].id;
           if(this.isAfterViewInit){
+            this.slides.autoplay=500;  
             this.slides.startAutoplay();
           }
       }
      }).catch(error=>console.log(error))
+     this.loadArticles();
   }
 
   renderer:THREE.WebGLRenderer;
@@ -170,7 +176,40 @@ export class HomePage {
   }
 
   slideChange(){
+    this.activeBannerIndex=this.banners[this.slides.getActiveIndex()].id;
     console.log(this.slides.getActiveIndex());
   }
 
+  indicatorSelected(id:number){
+    this.activeBannerIndex=id;
+    let index;
+    this.banners.forEach((v,i,arr)=>{
+      if(v.id==id){
+        index=i;
+        return;
+      }
+    })
+    this.slides.slideTo(index);
+  }
+
+  //加载首页的文章列表
+  currentPageIndex=0;
+  articles=[];
+  loadArticles(callback?:()=>void){
+    this.articleService.getArticles(this.currentPageIndex.toString(),(result)=>{
+      result.data.datas.forEach(d=>{
+        this.articles.push(d);
+      })
+      if(callback!=null){
+        callback();
+      }
+    })
+  }
+
+  doInfinite(infiniter:InfiniteScroll){
+    ++this.currentPageIndex;
+    this.loadArticles(()=>{
+     infiniter.complete();
+    });
+  }
 }

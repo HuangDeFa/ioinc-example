@@ -3,4 +3,30 @@ page-home {
       width: 100%;
       height: 200px;
   }
+  div {
+    ion-slides{
+      float: left;
+    }
+    .indicator{
+      height: fit-content;
+     color: red; 
+     z-index: 2;
+     position: absolute;
+     right:20px;
+     top: 250px;
+
+     span{
+       display: inline-block;
+       height: 7px;
+       width: 7px;
+       border-radius: 8px;
+       border: 1px red solid ;
+       background: peachpuff;
+       margin-right: 5px;
+     }
+     .indecator-selected{
+      background: yellowgreen;
+     }
+    }
+  }
 }

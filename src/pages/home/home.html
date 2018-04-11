@@ -6,16 +6,42 @@
 
 <ion-content padding>
   <h2>Welcome to ThreeJs Ionic Sample App!</h2>
-  <ion-slides #banner class="slide-banner" (ionSlideDidChange)="slideChange()">
+  <div class="banner">
+  <ion-slides #banner  class="slide-banner" (ionSlideDidChange)="slideChange()">
     <ion-slide *ngFor="let item of banners">
-      <a href="{{item.imagePath}}"><img width="100%" height="200px" src="{{item.imagePath}}"/></a>
+      <a href="{{item.imagePath}}">
+        <img width="100%" height="200px" src="{{item.imagePath}}"/>
+      </a>
     </ion-slide>
   </ion-slides>
+  <div class="indicator">
+      <span *ngFor="let item of banners" [ngClass]="{'indecator-selected': activeBannerIndex==item.id}" (click)="indicatorSelected(item.id)"></span>
+  </div>
+  </div>
   <ion-list >
-    <button ion-item  *ngFor="let item of ListItems" (click)="listItemSelected(item)">
+    <ion-card *ngFor="let item of articles">
+      <ion-card-header>
+        <a href="{{item.link}}">{{item.title}}</a>
+      </ion-card-header>
+      <ion-card-content>
+        <div>
+            <p>作者 <span>{{item.author}}</span></p>
+            <p>分类 <span>{{item.superChapterName}}/{{item.chapterName}}</span></p>
+            <p>时间 <span>{{item.niceDate}}</span></p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+   <!-- <button ion-item  *ngFor="let item of ListItems" (click)="listItemSelected(item)">
       {{item}}
     </button>
-  </ion-list>
+  </ion-list>-->
   <!--<div #container></div>
   <meta name="viewport" content="width-device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
   <div id="info">
