@@ -6,6 +6,11 @@
 
 <ion-content padding>
   <h2>Welcome to ThreeJs Ionic Sample App!</h2>
+  <ion-slides #banner class="slide-banner" (ionSlideDidChange)="slideChange()">
+    <ion-slide *ngFor="let item of banners">
+      <a href="{{item.imagePath}}"><img width="100%" height="200px" src="{{item.imagePath}}"/></a>
+    </ion-slide>
+  </ion-slides>
   <ion-list >
     <button ion-item  *ngFor="let item of ListItems" (click)="listItemSelected(item)">
       {{item}}

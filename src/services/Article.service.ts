@@ -8,7 +8,7 @@ import { of } from "rxjs/observable/of";
 @Injectable()
 export class ArticleService{
     
-        articleUrl:string ="http://www.wanandroid.com/article/list/0/json"
+        articleUrl:string ="http://www.wanandroid.com/article/list/pageIndex/json"
        constructor(private http:HttpClient){
 
        }
@@ -23,10 +23,10 @@ export class ArticleService{
           }
        }
 
-       getArticles(callback:(result:any)=>void){
-           this.http.get(this.articleUrl).toPromise().then(res=>{
+       getArticles(pageIndex='0',callback:(result:any)=>void){
+           this.http.get(this.articleUrl.replace("pageIndex",pageIndex)).toPromise().then((res)=>{
                console.log(res)
                callback(res==null?[]:res)
-            })
+            }).catch(error=>console.error(error))
        }
 }

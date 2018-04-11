@@ -1,4 +1,4 @@
-import { Detail } from './../pages/detail/detail';
+//import { Detail } from './../pages/detail/detail';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -38,7 +38,7 @@ import {HighlightDirective} from '../directive/myHighlight.directive'
     CountDownLocalComponet,
     ContactChildInjectComponent,
     HighlightDirective,
-    Detail
+   // Detail
   ],
   imports: [
     BrowserModule,
@@ -54,7 +54,7 @@ import {HighlightDirective} from '../directive/myHighlight.directive'
     ContactPage,
     HomePage,
     TabsPage,
-    Detail
+    //Detail
   ],
   providers: [
     StatusBar,

@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import {Component, ViewChild, ElementRef} from '@angular/core';
-import {NavController, ActionSheetController, IonicPage} from 'ionic-angular';
+import {NavController, ActionSheetController, IonicPage, Slides} from 'ionic-angular';
 import {ExampleExport,ExampleExport2,ExampleExport3} from '../../js/example.export'
 import * as THREE from 'three'
 import {OrbitControls} from '../../js/three-orbitcontrols'
@@ -12,8 +13,12 @@ export class HomePage {
  // @ViewChild("container") container:ElementRef;
  // @ViewChild("stlViewer") stlViewer:ElementRef;
   ListItems:Array<string>=[];
+  banners=[];
+  @ViewChild('banner')
+  slides:Slides;
+  isAfterViewInit=false;
 
-  constructor(public navCtrl : NavController,public actionSheetController:ActionSheetController) {
+  constructor(public navCtrl : NavController,public actionSheetController:ActionSheetController,private http:HttpClient) {
     let example=new ExampleExport();
     example.exportFn("this exmple msg")
     let example1=new ExampleModule();
@@ -47,6 +52,13 @@ export class HomePage {
      sheet.present()
   }
 
+  ngAfterViewInit() {
+    this.isAfterViewInit=true;
+    if(this.banners.length>0){
+    this.slides.startAutoplay();
+    }
+  }
+
   ngOnInit() : void {
     /*var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
@@ -63,6 +75,17 @@ export class HomePage {
     camera.position.z = 5;
     renderer.render(scene, camera);*/
     //this.orbitControlsExample();
+
+    this.http.get("http://www.wanandroid.com/banner/json").toPromise().then(data=>{
+            
+      if(data.hasOwnProperty('data')){
+          console.log(data)
+          this.banners=data['data']
+          if(this.isAfterViewInit){
+            this.slides.startAutoplay();
+          }
+      }
+     }).catch(error=>console.log(error))
   }
 
   renderer:THREE.WebGLRenderer;
@@ -144,6 +167,10 @@ export class HomePage {
     let box=new THREE.BoxGeometry(100,100,100);
     let secen=new THREE.Scene();
      
+  }
+
+  slideChange(){
+    console.log(this.slides.getActiveIndex());
   }
 
 }

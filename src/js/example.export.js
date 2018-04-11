@@ -2,7 +2,7 @@ var ExampleExport=(function(){
     function ExampleExport(){
              
     }
-    ExampleExport.prototype.exportFn=(msg)=>{
+    ExampleExport.prototype.exportFn=function(msg){
         console.log("ExampleExport-->"+msg)
     }
     return ExampleExport;
@@ -18,7 +18,7 @@ var ExampleExport3 = function(){
     function showAddress(){
       console.log("show ExampleExport3 address")
     }
-    this.sayHi=(msg)=>{
+    this.sayHi=function(msg){
      console.log("ExampleExport3--> Hi "+msg)
      showAddress();
     }

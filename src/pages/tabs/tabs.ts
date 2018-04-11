@@ -15,6 +15,6 @@ export class TabsPage {
   tab3Root = ContactPage;
 
   constructor(public navCtrl:NavController) {
-              navCtrl.swipeBackEnabled=true;
+  
   }
 }

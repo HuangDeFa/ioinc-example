@@ -4,7 +4,7 @@ function ExampleModule(){
   console.warn("ExampleModule-->" +msg); 
   }
 
-  this.sayHello=(name)=>{
+  this.sayHello=function(name){
     console.log("Hello "+name);
   }
 }

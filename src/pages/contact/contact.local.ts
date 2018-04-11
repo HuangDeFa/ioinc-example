@@ -3,7 +3,7 @@ import {Component, ElementRef } from '@angular/core'
 @Component(
     {
         selector:'contact-countdown',
-        template:`<div [style]="style">{{Msg}}</div>`
+        template:`<div>{{Msg}}</div>`
     }
 )
 export class CountDownLocalComponet{

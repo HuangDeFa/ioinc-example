@@ -1,8 +1,8 @@
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, Platform } from 'ionic-angular';
 import { Component ,NgModule, ViewChild} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {ContactChildInjectComponent} from './contact.childInject'
-import { Detail } from '../detail/detail';
+//import { Detail } from '../detail/detail';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class ContactPage {
 
   private hasChildComponentReady=false
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,public platform:Platform) {
    this.color='green'
   }
 
@@ -47,7 +47,8 @@ export class ContactPage {
   }
 
   goDetail(){
-    this.navCtrl.parent.parent.push(Detail)
+    this.navCtrl.parent.parent.push('Detail',{title:'Ionic UIComponet Detail'},{duration:350,animate:true,
+      animation:'ios-transition',direction:'forward'})
   }
 
 }
